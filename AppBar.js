@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { StyleSheet } from 'react-native';
 import {
   Right,
-  Container,
   Header,
   Title
 } from 'native-base';
@@ -10,13 +9,11 @@ import {
 export default class AppBar extends Component {
   render() {
     return (
-      <Container>
-        <Header style={styles.appBar}>
-          <Right>
-            <Title>پول خورد</Title>
-          </Right>
-        </Header>
-      </Container>
+      <Header style={styles.appBar} hasTabs>
+        <Right>
+          <Title>پول خورد</Title>
+        </Right>
+      </Header>
     );
   }
 }
