@@ -11,7 +11,7 @@ export default class AppBar extends Component {
     return (
       <Header style={styles.appBar} hasTabs>
         <Right>
-          <Title>پول خورد</Title>
+          <Title style={styles.appBarTitle}>پول خورد</Title>
         </Right>
       </Header>
     );
@@ -22,5 +22,9 @@ const styles = StyleSheet.create({
   appBar: {
     height: 72,
     paddingTop: 24,
+    backgroundColor: '#FFEB3B',
   },
+  appBarTitle: {
+    color: '#212121',
+  }
 });
