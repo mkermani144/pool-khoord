@@ -9,20 +9,20 @@ import { Text } from 'react-native';
 export default class MainPart extends Component {
   render() {
     return (
-      <Tabs tabBarUnderlineStyle={styles.tabUnderline}>
-        <Tab
-          tabStyle={styles.tab}
-          activeTabStyle={styles.tab}
-          textStyle={styles.tabText}
-          activeTextStyle={styles.activeTabText}
-          heading="گز‍ارش‌ها"
-        />
+      <Tabs tabBarUnderlineStyle={styles.tabUnderline} initialPage={1}>
         <Tab
           tabStyle={styles.tab}
           activeTabStyle={styles.tab}
           textStyle={styles.tabText}
           activeTextStyle={styles.activeTabText}
           heading="تاریخچه"
+        />
+        <Tab
+          tabStyle={styles.tab}
+          activeTabStyle={styles.tab}
+          textStyle={styles.tabText}
+          activeTextStyle={styles.activeTabText}
+          heading="گز‍ارش‌ها"
         />
       </Tabs>
     );
