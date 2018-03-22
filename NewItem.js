@@ -15,11 +15,16 @@ export default class NewItem extends Component {
       <Container>
         <TextField
           label='عنوان'
-          inputContainerStyle={styles.textInput}
+          containerStyle={styles.textInput}
+          onChangeText={newTitle => this.props.updateCurrentTitle(newTitle)}
+          error={this.props.titleError}
         />
         <TextField
           label='مقدار'
-          inputContainerStyle={styles.textInput}
+          containerStyle={styles.textInput}
+          onChangeText={newValue => this.props.updateCurrentValue(newValue)}
+          error={this.props.valueError}
+          keyboardType="numeric"
         />
       </Container>
     );

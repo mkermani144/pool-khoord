@@ -26,7 +26,7 @@ export default class AppBar extends Component {
           <Left>
             <Button
               transparent
-              onPress={this.props.onPressBack}
+              onPress={this.props.onConfirm}
             >
               <Icon name="checkmark" />
             </Button>

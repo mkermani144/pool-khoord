@@ -16,7 +16,9 @@ export default class MainPart extends Component {
           textStyle={styles.tabText}
           activeTextStyle={styles.activeTabText}
           heading="تاریخچه"
-        />
+        >
+          <Text>{this.props.currentValue}</Text>
+        </Tab>
         <Tab
           tabStyle={styles.tab}
           activeTabStyle={styles.tab}
