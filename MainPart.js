@@ -1,48 +1,74 @@
 import React, { Component } from 'react';
-import { StyleSheet } from 'react-native';
 import {
-  Tab,
-  Tabs
-} from 'native-base';
-import { Text } from 'react-native';
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
+import {
+  BottomNavigation,
+  Container,
+  COLOR,
+  ListItem,
+} from 'react-native-material-ui';
+import moment from 'moment-jalaali';
 
 export default class MainPart extends Component {
+  state = {
+    active: 'logs',
+  };
   render() {
     return (
-      <Tabs tabBarUnderlineStyle={styles.tabUnderline} initialPage={1}>
-        <Tab
-          tabStyle={styles.tab}
-          activeTabStyle={styles.tab}
-          textStyle={styles.tabText}
-          activeTextStyle={styles.activeTabText}
-          heading="تاریخچه"
-        >
-          <Text>{this.props.currentValue}</Text>
-        </Tab>
-        <Tab
-          tabStyle={styles.tab}
-          activeTabStyle={styles.tab}
-          textStyle={styles.tabText}
-          activeTextStyle={styles.activeTabText}
-          heading="گز‍ارش‌ها"
-        />
-      </Tabs>
+      <View style={styles.container}>
+        <ScrollView style={styles.container}>
+          {this.props.list.map((el, i) => 
+            <ListItem
+              style={{
+                primaryText: styles.alignLeft,
+                secondaryText: StyleSheet.flatten([styles.alignLeft, el[1].value >= 0 ? styles.income : styles.expense]),
+                tertiaryText: styles.alignLeft,
+              }}
+              key={i}
+              divider
+              centerElement={{
+                primaryText: el[1].title,
+                secondaryText: `${el[1].value}`,
+                tertiaryText: `${moment(el[0]).format('jD jMMMM jYYYY - h:mm')}`,
+              }}
+            />
+          )}
+        </ScrollView>
+        <BottomNavigation active={this.state.active} style={{ container: styles.bottomNavigation }}>
+          <BottomNavigation.Action
+            key="logs"
+            label="تاریخچه"
+            icon="menu"
+          />
+          <BottomNavigation.Action
+            key="reports"
+            label="گزارش‌ها"
+            icon="pie-chart"
+          />
+        </BottomNavigation>
+      </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  tab: {
-    backgroundColor: '#FFEB3B',
+  container: {
+    flex: 1,
   },
-  tabUnderline: {
-    backgroundColor: '#2196F3',
+  alignLeft: {
+    textAlign: 'left',
   },
-  tabText: {
-    color: '#212121',
+  bottomNavigation: {
+    bottom: 0,
   },
-  activeTabText: {
-    color: '#212121',
-    fontWeight: 'bold',
-  }
+  expense: {
+    color: COLOR.red400,
+  },
+  income: {
+    color: COLOR.green400,
+  },
 });

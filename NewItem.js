@@ -1,18 +1,14 @@
 import React, { Component } from 'react';
-import { StyleSheet } from 'react-native';
 import {
-  Container,
-  Content,
-  Form,
-  Item,
-  Input
-} from 'native-base';
+  StyleSheet,
+  View,
+} from 'react-native';
 import { TextField } from 'react-native-material-textfield';
 
 export default class NewItem extends Component {
   render() {
     return (
-      <Container>
+      <View>
         <TextField
           label='عنوان'
           containerStyle={styles.textInput}
@@ -26,7 +22,7 @@ export default class NewItem extends Component {
           error={this.props.valueError}
           keyboardType="numeric"
         />
-      </Container>
+      </View>
     );
   }
 }

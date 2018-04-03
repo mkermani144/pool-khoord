@@ -1,14 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet } from 'react-native';
-import {
-  Left,
-  Right,
-  Header,
-  Title,
-  Icon,
-  Button,
-  Body,
-} from 'native-base';
+import { Toolbar } from 'react-native-material-ui';
 
 export default class AppBar extends Component {
   setStyle = () => {
@@ -17,32 +9,25 @@ export default class AppBar extends Component {
   }
   render() {
     return (
-      <Header style={this.setStyle()} hasTabs>
-        {!this.props.newItemPageOpen ?
-          <Body>
-            <Title style={styles.appBarTitle}>پول خورد</Title>
-          </Body>
-          :
-          <Left>
-            <Button
-              transparent
-              onPress={this.props.onConfirm}
-            >
-              <Icon name="checkmark" />
-            </Button>
-          </Left>
-        }
-        {this.props.newItemPageOpen &&
-          <Right>
-            <Button
-              transparent
-              onPress={this.props.onPressBack}
-            >
-              <Icon name="arrow-back" />
-            </Button>
-          </Right>
-        }
-      </Header>
+      !this.props.newItemPageOpen ?
+        <Toolbar 
+          centerElement="پول خورد"
+          style={{
+            container: this.setStyle(),
+            titleText: styles.appBarTitle,
+          }}
+        />
+        :
+        <Toolbar
+          leftElement="done"
+          rightElement="arrow-back"
+          style={{
+            container: this.setStyle(),
+            titleText: styles.appBarTitle,
+          }}
+          onLeftElementPress={this.props.onConfirm}
+          onRightElementPress={this.props.onPressBack}
+        />
     );
   }
 }
