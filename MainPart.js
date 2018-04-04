@@ -1,53 +1,41 @@
 import React, { Component } from 'react';
 import {
-  ScrollView,
   StyleSheet,
-  Text,
   View,
 } from 'react-native';
 import {
   BottomNavigation,
-  Container,
   COLOR,
-  ListItem,
 } from 'react-native-material-ui';
 import moment from 'moment-jalaali';
+
+import Logs from './Logs';
+import Reports from './Reports';
 
 export default class MainPart extends Component {
   state = {
     active: 'logs',
   };
+  changeTab = tab => this.setState({ active: tab });
   render() {
     return (
       <View style={styles.container}>
-        <ScrollView style={styles.container}>
-          {this.props.list.map((el, i) => 
-            <ListItem
-              style={{
-                primaryText: styles.alignLeft,
-                secondaryText: StyleSheet.flatten([styles.alignLeft, el[1].value >= 0 ? styles.income : styles.expense]),
-                tertiaryText: styles.alignLeft,
-              }}
-              key={i}
-              divider
-              centerElement={{
-                primaryText: el[1].title,
-                secondaryText: `${el[1].value}`,
-                tertiaryText: `${moment(el[0]).format('jD jMMMM jYYYY - h:mm')}`,
-              }}
-            />
-          )}
-        </ScrollView>
+        {this.state.active === 'logs' ?
+          <Logs list={this.props.list} /> :
+          <Reports list={this.props.list} />
+        }
         <BottomNavigation active={this.state.active} style={{ container: styles.bottomNavigation }}>
           <BottomNavigation.Action
             key="logs"
             label="تاریخچه"
             icon="menu"
-          />
+            onPress={tab => this.changeTab('logs')}
+            />
           <BottomNavigation.Action
             key="reports"
             label="گزارش‌ها"
             icon="pie-chart"
+            onPress={tab => this.changeTab('reports')}
           />
         </BottomNavigation>
       </View>
